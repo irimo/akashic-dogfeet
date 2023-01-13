@@ -26,6 +26,12 @@
 			"type": "script",
 			"path": "script/main.js",
 			"global": true
+		},
+		"feet": {
+			"type": "image",
+			"path": "image/feet.png",
+			"width": 40,
+			"height": 40
 		}
 	},
 	"moduleMainScripts": {},

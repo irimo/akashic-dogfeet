@@ -1,7 +1,7 @@
 "use strict";
 // import { SnakeGameMainParameterObject } from "./config/ParameterObject";
 // import { sessionParameter } from "./config/defaultParameter";
-// // import { StateManager, PlayerInfo } from "./StateManager";
+// // import { StateManager, feetInfo } from "./StateManager";
 // import { StateManager} from "./StateManager";
 // export function main(param: SnakeGameMainParameterObject): void {
 // 	const userSessionParameter= param.sessionParameter;
@@ -10,13 +10,13 @@
 // 	}
 // 	const stateManager = new StateManager({
 // 		sessionParameter: sessionParameter,
-// 		broadcaster: param.broadcasterPlayer
+// 		broadcaster: param.broadcasterfeet
 // 	});
 // if (!!stateManager.sessionParameter.config.debug &&
 // 	stateManager.sessionParameter.config.debug.skipLottery){
-// 	stateManager.playerList = {};
-// 	stateManager.playerList[stateManager.broadcaster.id] = new PlayerInfo({
-// 		player: stateManager.broadcaster,
+// 	stateManager.feetList = {};
+// 	stateManager.feetList[stateManager.broadcaster.id] = new feetInfo({
+// 		feet: stateManager.broadcaster,
 // 		user: {
 // 			name: "debug",
 // 			id: "000000000",
@@ -51,57 +51,36 @@
 // }
 // let param: object = {"hoge": 1, "fuga": 2}
 function main() {
-    // const param: any = {} as SnakeGameMainParameterObject;
-    // Object.keys(originalParam).forEach((key) => {
-    // 	param[key] = (originalParam as any)[key];
-    // });
-    // param.sessionParameter = {};
-    // let sessionParameter: SnakeGameSessionParameter;
-    // let broadcasterPlayer: g.Player;
     var scene = new g.Scene({
         game: g.game,
-        assetIds: ["player"]
+        assetIds: ["feet"]
     });
-    // function start(): void {
-    // 	// param.sessionParameter = sessionParameter;
-    // 	g.game.popScene();
-    // 	// main(param);
-    // }
-    // g.game.onJoin.add((event) => {
-    // 	broadcasterPlayer = event.player;
-    // 	param.broadcasterPlayer = broadcasterPlayer;
-    // });
-    // scene.onMessage.add((message) => {
-    // 	if (message.data && message.data.type === "start" && message.data.parameters) {
-    // 		sessionParameter = message.data.parameters;
-    // 	}
-    // });
-    var playerImageAsset;
-    var player;
+    var feetImageAsset;
+    var feet;
     scene.onLoad.add(function () {
-        playerImageAsset = scene.asset.getImageById("player");
+        feetImageAsset = scene.asset.getImageById("feet");
         // プレイヤーを生成します
-        player = new g.Sprite({
+        feet = new g.Sprite({
             scene: scene,
-            src: playerImageAsset,
-            width: playerImageAsset.width,
-            height: playerImageAsset.height
+            src: feetImageAsset,
+            width: feetImageAsset.width,
+            height: feetImageAsset.height
         });
         // });
-        // // 生主の playerId 確定とセッションパラメータが揃ったらゲーム開始
+        // // 生主の feetId 確定とセッションパラメータが揃ったらゲーム開始
         // scene.onUpdate.add(() => {
         // プレイヤーの初期座標を、画面の中心に設定します
-        player.x = (g.game.width - player.width) / 2;
-        player.y = (g.game.height - player.height) / 2;
-        player.onUpdate.add(function () {
+        feet.x = (g.game.width - feet.width) / 2;
+        feet.y = (g.game.height - feet.height) / 2;
+        feet.onUpdate.add(function () {
             // 毎フレームでY座標を再計算し、プレイヤーの飛んでいる動きを表現します
             // ここではMath.sinを利用して、時間経過によって増加するg.game.ageと組み合わせて
-            player.y = (g.game.height - player.height) / 2 + Math.sin(g.game.age % (g.game.fps * 10) / 4) * 10;
+            feet.y = (g.game.height - feet.height) / 2 + Math.sin(g.game.age % (g.game.fps * 10) / 4) * 10;
             // プレイヤーの座標に変更があった場合、 modified() を実行して変更をゲームに通知します
-            player.modified();
+            feet.modified();
         });
-        scene.append(player);
-        // if (broadcasterPlayer && sessionParameter) {
+        scene.append(feet);
+        // if (broadcasterfeet && sessionParameter) {
         // start();
         // }
     });
