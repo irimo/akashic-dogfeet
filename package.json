@@ -15,6 +15,7 @@
   "devDependencies": {
     "@akashic/akashic-cli-scan": "~0.5.4",
     "@akashic/akashic-engine": "~3.0.4",
+    "@types/lodash": "^4.14.191",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.0.0",
@@ -27,6 +28,8 @@
     "@akashic-extension/akashic-tile": "^3.0.0",
     "@akashic-extension/akashic-timeline": "^3.0.0",
     "@akashic-extension/resolve-player-info": "^1.0.1",
-    "grapheme-splitter": "^1.0.4"
+    "@types/lodash": "^4.17.21",
+    "grapheme-splitter": "^1.0.4",
+    "lodash": "^4.17.21"
   }
 }
