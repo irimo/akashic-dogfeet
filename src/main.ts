@@ -1,40 +1,45 @@
-"use strict";
 // import { SnakeGameMainParameterObject } from "./config/ParameterObject";
 // import { sessionParameter } from "./config/defaultParameter";
 // // import { StateManager, PlayerInfo } from "./StateManager";
 // import { StateManager} from "./StateManager";
+
 // export function main(param: SnakeGameMainParameterObject): void {
 // 	const userSessionParameter= param.sessionParameter;
 // 	if (userSessionParameter) {
 // 		assign(sessionParameter, userSessionParameter);
 // 	}
+
 // 	const stateManager = new StateManager({
 // 		sessionParameter: sessionParameter,
 // 		broadcaster: param.broadcasterPlayer
 // 	});
-// if (!!stateManager.sessionParameter.config.debug &&
-// 	stateManager.sessionParameter.config.debug.skipLottery){
-// 	stateManager.playerList = {};
-// 	stateManager.playerList[stateManager.broadcaster.id] = new PlayerInfo({
-// 		player: stateManager.broadcaster,
-// 		user: {
-// 			name: "debug",
-// 			id: "000000000",
-// 			isPremium: false
-// 		},
-// 		isBroadcaster: true,
-// 		snakeType: "A"
-// 	});
-// stateManager.randomGenerator = new g.XorshiftRandomGenerator(2525);
-// stateManager.changeMainGameScene();
-// } else {
-// 	stateManager.changeTitleScene();
+
+	// if (!!stateManager.sessionParameter.config.debug &&
+	// 	stateManager.sessionParameter.config.debug.skipLottery){
+	// 	stateManager.playerList = {};
+	// 	stateManager.playerList[stateManager.broadcaster.id] = new PlayerInfo({
+	// 		player: stateManager.broadcaster,
+	// 		user: {
+	// 			name: "debug",
+	// 			id: "000000000",
+	// 			isPremium: false
+	// 		},
+	// 		isBroadcaster: true,
+	// 		snakeType: "A"
+	// 	});
+    // stateManager.randomGenerator = new g.XorshiftRandomGenerator(2525);
+    // stateManager.changeMainGameScene();
+	// } else {
+	// 	stateManager.changeTitleScene();
+	// }
 // }
-// }
+
 // function assign(target: any, _: any): void {
 // 	const to = Object(target);
+
 // 	for (let index = 1; index < arguments.length; index++) {
 // 		const nextSource = arguments[index];
+
 // 		if (nextSource != null) {
 // 			for (const nextKey in nextSource) {
 // 				if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -49,36 +54,42 @@
 // 	}
 // 	return to;
 // }
+
 // let param: object = {"hoge": 1, "fuga": 2}
-function main() {
+
+function main(): void {
     // const param: any = {} as SnakeGameMainParameterObject;
-    // Object.keys(originalParam).forEach((key) => {
-    // 	param[key] = (originalParam as any)[key];
-    // });
-    // param.sessionParameter = {};
-    // let sessionParameter: SnakeGameSessionParameter;
-    // let broadcasterPlayer: g.Player;
-    var scene = new g.Scene({
-        game: g.game,
+	// Object.keys(originalParam).forEach((key) => {
+	// 	param[key] = (originalParam as any)[key];
+	// });
+	// param.sessionParameter = {};
+
+	// let sessionParameter: SnakeGameSessionParameter;
+	// let broadcasterPlayer: g.Player;
+
+	const scene = new g.Scene({
+		game: g.game,
         assetIds: ["player"]
-    });
-    // function start(): void {
-    // 	// param.sessionParameter = sessionParameter;
-    // 	g.game.popScene();
-    // 	// main(param);
-    // }
-    // g.game.onJoin.add((event) => {
-    // 	broadcasterPlayer = event.player;
-    // 	param.broadcasterPlayer = broadcasterPlayer;
-    // });
-    // scene.onMessage.add((message) => {
-    // 	if (message.data && message.data.type === "start" && message.data.parameters) {
-    // 		sessionParameter = message.data.parameters;
-    // 	}
-    // });
-    var playerImageAsset;
-    var player;
-    scene.onLoad.add(function () {
+	});
+	// function start(): void {
+	// 	// param.sessionParameter = sessionParameter;
+	// 	g.game.popScene();
+	// 	// main(param);
+	// }
+
+	// g.game.onJoin.add((event) => {
+	// 	broadcasterPlayer = event.player;
+	// 	param.broadcasterPlayer = broadcasterPlayer;
+	// });
+
+	// scene.onMessage.add((message) => {
+	// 	if (message.data && message.data.type === "start" && message.data.parameters) {
+	// 		sessionParameter = message.data.parameters;
+	// 	}
+	// });
+    let playerImageAsset;
+    let player: g.Sprite;
+	scene.onLoad.add(() => {
         playerImageAsset = scene.asset.getImageById("player");
         // プレイヤーを生成します
         player = new g.Sprite({
@@ -87,9 +98,9 @@ function main() {
             width: playerImageAsset.width,
             height: playerImageAsset.height
         });
-        // });
-        // // 生主の playerId 確定とセッションパラメータが揃ったらゲーム開始
-        // scene.onUpdate.add(() => {
+    // });
+	// // 生主の playerId 確定とセッションパラメータが揃ったらゲーム開始
+	// scene.onUpdate.add(() => {
         // プレイヤーの初期座標を、画面の中心に設定します
         player.x = (g.game.width - player.width) / 2;
         player.y = (g.game.height - player.height) / 2;
@@ -101,11 +112,12 @@ function main() {
             player.modified();
         });
         scene.append(player);
-        // if (broadcasterPlayer && sessionParameter) {
+		// if (broadcasterPlayer && sessionParameter) {
         // start();
-        // }
-    });
-    g.game.pushScene(scene);
-}
-;
-module.exports = main;
+		// }
+	});
+
+	g.game.pushScene(scene);
+};
+
+export = main;
